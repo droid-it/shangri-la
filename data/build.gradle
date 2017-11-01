@@ -1,34 +1,69 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
-android {
-    compileSdkVersion 26
+dependencies {
 
+    def dataDependencies = rootProject.ext.dataDependencies
+//    def dataTestDependencies = rootProject.ext.dataTestDependencies
 
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation project(':domain')
 
-    defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
+    implementation dataDependencies.gson
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    //dagger
+    kapt dataDependencies.daggerCompiler
+    implementation dataDependencies.dagger
+    implementation dataDependencies.daggerProcessor
+    implementation dataDependencies.daggerSupport
 
-    }
+    //retrofit2
+    implementation dataDependencies.retrofit2
+    implementation dataDependencies.retrofit2Converter
+    implementation dataDependencies.retrofit2RxAdapter
+    implementation dataDependencies.okhttp3
+    implementation dataDependencies.okHttpLoggingInterceptor
 
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
+    //rx
+    implementation dataDependencies.rxJava
+    implementation dataDependencies.rxAndroid
+    implementation dataDependencies.rxKotlin
 
 }
 
-dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"
 
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+android {
+    def globalConfiguration = rootProject.extensions.getByName("ext")
+
+    compileSdkVersion globalConfiguration.getAt("androidCompileSdkVersion")
+    buildToolsVersion globalConfiguration.getAt("androidBuildToolsVersion")
+
+    defaultConfig {
+        minSdkVersion globalConfiguration.getAt("androidMinSdkVersion")
+        targetSdkVersion globalConfiguration.getAt("androidTargetSdkVersion")
+        versionCode globalConfiguration.getAt("androidVersionCode")
+        versionName globalConfiguration.getAt("androidVersionName")
+        testInstrumentationRunner globalConfiguration.getAt("testInstrumentationRunner")
+        testApplicationId globalConfiguration.getAt("testApplicationId")
+    }
+
+    packagingOptions {
+        exclude 'LICENSE.txt'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/ASL2.0'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+    }
+
+    buildTypes {
+        debug {
+        }
+    }
+}
+
+kapt {
+    generateStubs = true
 }

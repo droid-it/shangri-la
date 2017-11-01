@@ -8,27 +8,24 @@ dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
-    api domainDependencies.gson
+    implementation domainDependencies.gson
 
     //dagger
     kapt domainDependencies.daggerCompiler
-    api domainDependencies.dagger
-    api domainDependencies.daggerProcessor
-    api domainDependencies.daggerSupport
+    implementation domainDependencies.dagger
+    implementation domainDependencies.daggerProcessor
+    implementation domainDependencies.daggerSupport
 
     //rx
-    api domainDependencies.rxJava
-    api domainDependencies.rxKotlin
+    implementation domainDependencies.rxJava
+    implementation domainDependencies.rxKotlin
 
-    api domainDependencies.javaxAnnotation
+    implementation domainDependencies.javaxAnnotation
 
     //testing
     testImplementation domainTestDependencies.junit
     testImplementation domainTestDependencies.mockitoKotlin
     testImplementation domainTestDependencies.truth
-
-
-    compile 'junit:junit:4.12'
 }
 
 sourceCompatibility = "1.8"
