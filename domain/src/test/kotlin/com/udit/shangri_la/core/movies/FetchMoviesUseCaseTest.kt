@@ -7,7 +7,7 @@ import com.udit.shangri_la.core.executor.PostExecutionThread
 import com.udit.shangri_la.core.executor.ThreadExecutor
 import com.udit.shangri_la.core.models.Movie
 import io.reactivex.Single
-import io.reactivex.subscribers.TestSubscriber
+import io.reactivex.observers.TestObserver
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
@@ -55,7 +55,7 @@ class FetchMoviesUseCaseTest {
     fun fetchMoviesInFutureTest() {
         whenever(mockMoviesRepository.fetchMoviesToBeReleasedInNextXDays(any())).thenReturn(Single.just(moviesInFuture))
 
-        val testSub = TestSubscriber<List<Movie>>()
+        val testSub = TestObserver<List<Movie>>()
         val single = fetchMoviesUseCase.buildUseCaseObservable(DAYS_TO_FETCH_DATA_FOR)
         single.subscribe(testSub)
 
@@ -70,7 +70,7 @@ class FetchMoviesUseCaseTest {
     fun fetchMoviesInPastTest() {
         whenever(mockMoviesRepository.fetchMoviesReleasedInLastXDays(any())).thenReturn(Single.just(moviesInPast))
 
-        val testSub = TestSubscriber<List<Movie>>()
+        val testSub = TestObserver<List<Movie>>()
         val single = fetchMoviesUseCase.buildUseCaseObservable(-1 * DAYS_TO_FETCH_DATA_FOR)
         single.subscribe(testSub)
 
@@ -85,7 +85,7 @@ class FetchMoviesUseCaseTest {
     fun fetchMoviesForTodayTest() {
         whenever(mockMoviesRepository.fetchMoviesToBeReleasedInNextXDays(any())).thenReturn(Single.just(moviesInFuture))
 
-        val testSub = TestSubscriber<List<Movie>>()
+        val testSub = TestObserver<List<Movie>>()
         val single = fetchMoviesUseCase.buildUseCaseObservable(0)
         single.subscribe(testSub)
 

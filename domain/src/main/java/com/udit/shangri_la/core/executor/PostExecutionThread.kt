@@ -1,10 +1,11 @@
 package com.udit.shangri_la.core.executor
 
+import io.reactivex.Scheduler
+
 /**
 * Created by Udit on 21/10/17.
 */
 
-import rx.Scheduler
 
 /**
  * Thread abstraction created to change the execution context from any thread to any other thread.

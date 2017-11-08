@@ -1,7 +1,7 @@
 package com.udit.shangri_la.core.movies
 
 import com.udit.shangri_la.core.models.Movie
-import rx.Single
+import io.reactivex.Single
 
 /**
 * Created by Udit on 19/10/17.

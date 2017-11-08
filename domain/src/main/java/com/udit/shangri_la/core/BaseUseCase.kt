@@ -2,19 +2,20 @@ package com.udit.shangri_la.core
 
 import com.udit.shangri_la.core.executor.PostExecutionThread
 import com.udit.shangri_la.core.executor.ThreadExecutor
-import rx.Observable
-import rx.Single
-import rx.Subscriber
-import rx.functions.Action1
-import rx.schedulers.Schedulers
-import rx.subscriptions.Subscriptions
+import io.reactivex.Observable
+import io.reactivex.Single
+import io.reactivex.SingleObserver
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
+
 
 /**
 * Created by Udit on 21/10/17.
 */
-abstract class BaseUseCase<R, T> protected constructor(private val threadExecutor: ThreadExecutor, private val postExecutionThread: PostExecutionThread) {
+abstract class BaseUseCase<in R, T> protected constructor(private val threadExecutor: ThreadExecutor,
+                                                          private val postExecutionThread: PostExecutionThread,
+                                                          private val disposables: CompositeDisposable = CompositeDisposable()) {
 
-    private var subscription = Subscriptions.empty()
 
     /**
      * Builds an [Observable] which will be used when executing the current [BaseUseCase].
@@ -23,32 +24,27 @@ abstract class BaseUseCase<R, T> protected constructor(private val threadExecuto
 
     /**
      * Executes the current use case.
-     * @param useCaseSubscriber The guy who will be listen to the observable build with [ ][.buildUseCaseObservable].
+     * @param observer The guy who will be listen to the observable build with [ ][.buildUseCaseObservable].
      */
     @SuppressWarnings("unchecked")
-    fun execute(input: R, useCaseSubscriber: Subscriber<T>) {
-        this.subscription = this.buildUseCaseObservable(input)
+    fun execute(input: R, observer: SingleObserver<T>) {
+        val observable = this.buildUseCaseObservable(input)
                 .subscribeOn(Schedulers.from(threadExecutor))
                 .observeOn(postExecutionThread.scheduler)
-                .subscribe(useCaseSubscriber)
+        observable.subscribeWith(observer)
     }
 
-    @SuppressWarnings("unchecked")
-    fun execute(input: R, onSuccess: Action1<T>, onError: Action1<Throwable>) {
-        this.subscription = this.buildUseCaseObservable(input)
-                .subscribeOn(Schedulers.from(threadExecutor))
-                .observeOn(postExecutionThread.scheduler)
-                .subscribe(onSuccess, onError)
-    }
-
-
-    /**
-     * Unsubscribes from current Subscription.
-     */
-    fun unsubscribe() {
-        if (!subscription.isUnsubscribed) {
-            subscription.unsubscribe()
-        }
-    }
-
+//    /**
+//     * Dispose from current [CompositeDisposable].
+//     */
+//    abstract fun dispose()
+//
+//    /**
+//     * Dispose from current [CompositeDisposable].
+//     */
+//    private fun addDisposable(disposable: Disposable) {
+////        Preconditions.checkNotNull(disposable)
+////        Preconditions.checkNotNull(disposables)
+//        disposables.add(disposable)
+//    }
 }
