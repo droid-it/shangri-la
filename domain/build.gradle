@@ -1,0 +1,55 @@
+apply plugin: 'java-library'
+apply plugin: 'kotlin'
+
+dependencies {
+
+    def domainDependencies = rootProject.ext.domainDependencies
+    def domainTestDependencies = rootProject.ext.domainTestDependencies
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+
+    implementation domainDependencies.gson
+
+    //dagger
+    kapt domainDependencies.daggerCompiler
+    implementation domainDependencies.dagger
+    implementation domainDependencies.daggerProcessor
+    implementation domainDependencies.daggerSupport
+
+    //rx
+    implementation domainDependencies.rxJava
+    implementation domainDependencies.rxKotlin
+
+    implementation domainDependencies.javaxAnnotation
+
+    //testing
+    testImplementation domainTestDependencies.junit
+    testImplementation domainTestDependencies.mockitoKotlin
+    testImplementation domainTestDependencies.truth
+}
+
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"
+
+buildscript {
+    ext.kotlin_version = '1.1.51'
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+repositories {
+    mavenCentral()
+}
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
