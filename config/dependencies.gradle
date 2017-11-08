@@ -29,7 +29,7 @@ ext {
     dexterVersion = '2.2.2'
 
     //Testing
-    robolectricVersion = '3.0'
+    robolectricVersion = '3.5.1'
     jUnitVersion = '4.4'
     truthVersion = '0.36'
     mockitoKotlinVersion = '1.5.0'

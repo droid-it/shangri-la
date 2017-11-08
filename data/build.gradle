@@ -5,7 +5,7 @@ apply plugin: 'kotlin-android-extensions'
 dependencies {
 
     def dataDependencies = rootProject.ext.dataDependencies
-//    def dataTestDependencies = rootProject.ext.dataTestDependencies
+    def dataTestDependencies = rootProject.ext.dataTestDependencies
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     implementation project(':domain')
@@ -29,6 +29,12 @@ dependencies {
     implementation dataDependencies.rxJava
     implementation dataDependencies.rxAndroid
     implementation dataDependencies.rxKotlin
+
+    //testing
+    testImplementation dataTestDependencies.junit
+    testImplementation dataTestDependencies.mockitoKotlin
+    testImplementation dataTestDependencies.truth
+    testImplementation dataTestDependencies.robolectric
 
 }
 
@@ -60,6 +66,12 @@ android {
 
     buildTypes {
         debug {
+        }
+    }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
         }
     }
 }

@@ -6,11 +6,12 @@ import com.nhaarman.mockito_kotlin.whenever
 import com.udit.shangri_la.core.executor.PostExecutionThread
 import com.udit.shangri_la.core.executor.ThreadExecutor
 import com.udit.shangri_la.core.models.Movie
+import io.reactivex.Single
+import io.reactivex.subscribers.TestSubscriber
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
-import rx.Single
-import rx.observers.TestSubscriber
+import java.util.*
 
 /**
 * Created by Udit on 28/10/17.
@@ -35,10 +36,18 @@ class FetchMoviesUseCaseTest {
         mockMoviesRepository = mock()
         fetchMoviesUseCase = FetchMoviesUseCase(mockThreadExecutor, mockPostExecutionThread, mockMoviesRepository)
 
-        val futureMovie = Movie(1, "future", "overview", "10-12-2017", 120, "wow")
+        val calFuture = Calendar.getInstance()
+        calFuture.set(Calendar.YEAR, 2017)
+        calFuture.set(Calendar.MONTH, 12)
+        calFuture.set(Calendar.DAY_OF_MONTH, 10)
+        val futureMovie = Movie(1, "future", "overview", calFuture, 120, "wow")
         moviesInFuture.add(futureMovie)
 
-        val pastMovie = Movie(2, "past", "overview", "10-10-2017", 120, "wow")
+        val calPast = Calendar.getInstance()
+        calPast.set(Calendar.YEAR, 2017)
+        calPast.set(Calendar.MONTH, 10)
+        calPast.set(Calendar.DAY_OF_MONTH, 10)
+        val pastMovie = Movie(2, "past", "overview", calPast, 120, "wow")
         moviesInPast.add(pastMovie)
     }
 
@@ -54,7 +63,7 @@ class FetchMoviesUseCaseTest {
         testSub.assertNoErrors()
         testSub.assertValueCount(1)
         testSub.assertValue(moviesInFuture)
-        testSub.assertCompleted()
+        testSub.assertComplete()
     }
 
     @Test
@@ -69,7 +78,7 @@ class FetchMoviesUseCaseTest {
         testSub.assertNoErrors()
         testSub.assertValueCount(1)
         testSub.assertValue(moviesInPast)
-        testSub.assertCompleted()
+        testSub.assertComplete()
     }
 
     @Test
@@ -84,7 +93,7 @@ class FetchMoviesUseCaseTest {
         testSub.assertNoErrors()
         testSub.assertValueCount(1)
         testSub.assertValue(moviesInFuture)
-        testSub.assertCompleted()
+        testSub.assertComplete()
     }
 
 
