@@ -3,7 +3,7 @@ package com.udit.shangri_la.data.repository.movies
 import com.udit.shangri_la.core.models.Movie
 import com.udit.shangri_la.core.movies.MoviesRepository
 import com.udit.shangri_la.data.repository.movies.net.MoviesRestApi
-import rx.Single
+import io.reactivex.Single
 import javax.inject.Inject
 
 /**
