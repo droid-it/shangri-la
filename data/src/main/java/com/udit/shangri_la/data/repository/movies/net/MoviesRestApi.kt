@@ -5,7 +5,7 @@ import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -24,7 +24,7 @@ class MoviesRestApi @Inject constructor() {
         val builder = OkHttpClient.Builder().addInterceptor(getLogginInterceptor())
         val retro = Retrofit.Builder().baseUrl("https://api.themoviedb.org/3/")
                 .addConverterFactory(GsonConverterFactory.create(Gson()))
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(builder.build()).build()
         movieService = retro.create(MoviesService::class.java)
     }

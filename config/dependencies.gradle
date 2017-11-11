@@ -80,7 +80,8 @@ ext {
                         daggerProcessor         : "com.google.dagger:dagger-android-processor:${daggerVersion}",
                         retrofit2               : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
                         retrofit2Converter      : "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
-                        retrofit2RxAdapter      : "com.squareup.retrofit2:adapter-rxjava:${retrofitVersion}",
+                        retrofit2RxAdapter      : "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}",
+
                         okhttp3                 : "com.squareup.okhttp3:okhttp:${okhttp3Version}",
                         okHttpLoggingInterceptor: "com.squareup.okhttp3:logging-interceptor:${okhttp3Version}",
                         gson                    : "com.google.code.gson:gson:${gsonVersion}",
