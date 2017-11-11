@@ -16,17 +16,11 @@ import javax.inject.Inject
 class MoviesCloudDataStore @Inject constructor(val moviesRestApi: MoviesRestApi, val mapper: MoviesResponseMapper) : MoviesDataStore {
 
 
-    override fun fetchMoviesReleasedInLastXDays(days: Int): Single<List<Movie>> {
-        val currentDate: String = Date().format(API_DATE_FORMAT)
-        val expectedPastDate: Calendar = Calendar.getInstance()
-        expectedPastDate.add(Calendar.DAY_OF_MONTH, -days)
-        val pastDate = expectedPastDate.time.format(API_DATE_FORMAT)
+    override fun getMoviesReleasedBetween(startDate: Calendar, endDate: Calendar): Single<List<Movie>> {
+        val startDateString: String = startDate.time.format(API_DATE_FORMAT)
+        val endDateString = endDate.time.format(API_DATE_FORMAT)
 
-        return moviesRestApi.getMoviesReleasedBetween(pastDate, currentDate).map(mapper::transformMoviesResponse)
-    }
-
-    override fun fetchMoviesToBeReleasedInNextXDays(days: Int): Single<List<Movie>> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return moviesRestApi.getMoviesReleasedBetween(startDateString, endDateString).map(mapper::transformMoviesResponse)
     }
 
 }

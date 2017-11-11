@@ -29,8 +29,6 @@ class MoviesRestApi @Inject constructor() {
         movieService = retro.create(MoviesService::class.java)
     }
 
-    internal fun getMoviesReleasedAfter(date: String) = movieService.getMoviesReleasedAfterDate(apiKey, date)
-
     internal fun getMoviesReleasedBetween(dateAfter: String, dateBefore: String) = movieService.getMoviesReleasedBetweenDates(apiKey, releasedAfter = dateAfter, releasedBefore = dateBefore)
 
     private fun getLogginInterceptor(): Interceptor {
