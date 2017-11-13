@@ -5,6 +5,7 @@ import com.udit.shangri_la.core.executor.PostExecutionThread
 import com.udit.shangri_la.core.executor.ThreadExecutor
 import com.udit.shangri_la.core.models.Movie
 import io.reactivex.Single
+import java.util.*
 import javax.inject.Inject
 
 /**
@@ -15,9 +16,15 @@ class FetchMoviesUseCase @Inject constructor(threadExecutor: ThreadExecutor, pos
 
     public override fun buildUseCaseObservable(input: Int): Single<List<Movie>> {
         return if (input < 0) {
-            moviesRepository.fetchMoviesReleasedInLastXDays(input)
+            val endDate: Calendar = Calendar.getInstance()
+            val startDate: Calendar = Calendar.getInstance()
+            startDate.add(Calendar.DAY_OF_YEAR, input)
+            moviesRepository.getMoviesReleasedBetween(startDate, endDate)
         } else {
-            moviesRepository.fetchMoviesToBeReleasedInNextXDays(input)
+            val startDate: Calendar = Calendar.getInstance()
+            val endDate: Calendar = Calendar.getInstance()
+            endDate.add(Calendar.DAY_OF_YEAR, input)
+            moviesRepository.getMoviesReleasedBetween(startDate, endDate)
         }
     }
 

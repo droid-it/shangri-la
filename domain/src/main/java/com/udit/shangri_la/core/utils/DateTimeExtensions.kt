@@ -1,4 +1,4 @@
-package com.udit.shangri_la.data.repository.movies.utils
+package com.udit.shangri_la.core.utils
 
 import java.text.ParseException
 import java.text.SimpleDateFormat

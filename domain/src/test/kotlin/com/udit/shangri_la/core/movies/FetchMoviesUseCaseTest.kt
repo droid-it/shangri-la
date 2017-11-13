@@ -2,13 +2,12 @@ package com.udit.shangri_la.core.movies
 
 import com.nhaarman.mockito_kotlin.any
 import com.nhaarman.mockito_kotlin.mock
+import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.whenever
 import com.udit.shangri_la.core.executor.PostExecutionThread
 import com.udit.shangri_la.core.executor.ThreadExecutor
 import com.udit.shangri_la.core.models.Movie
 import io.reactivex.Single
-import io.reactivex.observers.TestObserver
-import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import java.util.*
@@ -52,53 +51,76 @@ class FetchMoviesUseCaseTest {
     }
 
     @Test
-    fun fetchMoviesInFutureTest() {
-        whenever(mockMoviesRepository.fetchMoviesToBeReleasedInNextXDays(any())).thenReturn(Single.just(moviesInFuture))
+    fun Should_ReturnMoviesToBeReleasedInNextXDays_When_PositiveNumberOfDaysProvided() {
+        whenever(mockMoviesRepository.getMoviesReleasedBetween(any(), any())).thenReturn(Single.just(moviesInFuture))
+        val startDate = Calendar.getInstance()
+        val endDate = Calendar.getInstance()
+        endDate.add(Calendar.DAY_OF_YEAR, DAYS_TO_FETCH_DATA_FOR)
 
-        val testSub = TestObserver<List<Movie>>()
-        val single = fetchMoviesUseCase.buildUseCaseObservable(DAYS_TO_FETCH_DATA_FOR)
-        single.subscribe(testSub)
+        fetchMoviesUseCase.buildUseCaseObservable(DAYS_TO_FETCH_DATA_FOR)
 
-        testSub.awaitTerminalEvent()
-        testSub.assertNoErrors()
-        testSub.assertValueCount(1)
-        testSub.assertValue(moviesInFuture)
-        testSub.assertComplete()
+        verify(mockMoviesRepository).getMoviesReleasedBetween(startDate, endDate)
+
     }
 
     @Test
-    fun fetchMoviesInPastTest() {
-        whenever(mockMoviesRepository.fetchMoviesReleasedInLastXDays(any())).thenReturn(Single.just(moviesInPast))
+    fun Should_ReturnMoviesToReleasedInLastXDays_When_NegativeNumberOfDaysProvided() {
+        whenever(mockMoviesRepository.getMoviesReleasedBetween(any(), any())).thenReturn(Single.just(moviesInFuture))
+        val startDate = Calendar.getInstance()
+        val endDate = Calendar.getInstance()
+        startDate.add(Calendar.DAY_OF_YEAR, -DAYS_TO_FETCH_DATA_FOR)
 
-        val testSub = TestObserver<List<Movie>>()
-        val single = fetchMoviesUseCase.buildUseCaseObservable(-1 * DAYS_TO_FETCH_DATA_FOR)
-        single.subscribe(testSub)
+        fetchMoviesUseCase.buildUseCaseObservable(-DAYS_TO_FETCH_DATA_FOR)
 
-        testSub.awaitTerminalEvent()
-        testSub.assertNoErrors()
-        testSub.assertValueCount(1)
-        testSub.assertValue(moviesInPast)
-        testSub.assertComplete()
+        verify(mockMoviesRepository).getMoviesReleasedBetween(startDate, endDate)
+
     }
 
     @Test
-    fun fetchMoviesForTodayTest() {
-        whenever(mockMoviesRepository.fetchMoviesToBeReleasedInNextXDays(any())).thenReturn(Single.just(moviesInFuture))
+    fun Should_ReturnMoviesToBeReleasedToday_When_ZeroNumberOfDaysProvided() {
+        whenever(mockMoviesRepository.getMoviesReleasedBetween(any(), any())).thenReturn(Single.just(moviesInFuture))
+        val startDate = Calendar.getInstance()
+        val endDate = Calendar.getInstance()
 
-        val testSub = TestObserver<List<Movie>>()
-        val single = fetchMoviesUseCase.buildUseCaseObservable(0)
-        single.subscribe(testSub)
+        fetchMoviesUseCase.buildUseCaseObservable(0)
 
-        testSub.awaitTerminalEvent()
-        testSub.assertNoErrors()
-        testSub.assertValueCount(1)
-        testSub.assertValue(moviesInFuture)
-        testSub.assertComplete()
+        verify(mockMoviesRepository).getMoviesReleasedBetween(startDate, endDate)
+
     }
-
-
-    @After
-    fun tearDown() {
-    }
+//
+//    @Test
+//    fun fetchMoviesInPastTest() {
+//        whenever(mockMoviesRepository.fetchMoviesReleasedInLastXDays(any())).thenReturn(Single.just(moviesInPast))
+//
+//        val testSub = TestObserver<List<Movie>>()
+//        val single = fetchMoviesUseCase.buildUseCaseObservable(-1 * DAYS_TO_FETCH_DATA_FOR)
+//        single.subscribe(testSub)
+//
+//        testSub.awaitTerminalEvent()
+//        testSub.assertNoErrors()
+//        testSub.assertValueCount(1)
+//        testSub.assertValue(moviesInPast)
+//        testSub.assertComplete()
+//    }
+//
+//    @Test
+//    fun fetchMoviesForTodayTest() {
+//        whenever(mockMoviesRepository.fetchMoviesToBeReleasedInNextXDays(any())).thenReturn(Single.just(moviesInFuture))
+//
+//        val testSub = TestObserver<List<Movie>>()
+//        val single = fetchMoviesUseCase.buildUseCaseObservable(0)
+//        single.subscribe(testSub)
+//
+//        testSub.awaitTerminalEvent()
+//        testSub.assertNoErrors()
+//        testSub.assertValueCount(1)
+//        testSub.assertValue(moviesInFuture)
+//        testSub.assertComplete()
+//    }
+//
+//
+//    @After
+//    fun tearDown() {
+//    }
 
 }

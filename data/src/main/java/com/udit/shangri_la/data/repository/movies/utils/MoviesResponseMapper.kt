@@ -1,6 +1,7 @@
 package com.udit.shangri_la.data.repository.movies.utils
 
 import com.udit.shangri_la.core.models.Movie
+import com.udit.shangri_la.core.utils.toDate
 import com.udit.shangri_la.data.repository.movies.models.GetMovieResponseModel
 import java.util.*
 import kotlin.collections.ArrayList

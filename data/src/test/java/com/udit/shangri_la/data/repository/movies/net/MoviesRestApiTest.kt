@@ -1,16 +1,16 @@
 package com.udit.shangri_la.data.repository.movies.net
 
+import com.udit.shangri_la.core.utils.toDate
 import com.udit.shangri_la.data.repository.movies.models.GetMovieResponseModel
 import com.udit.shangri_la.data.repository.movies.utils.API_DATE_FORMAT
-import com.udit.shangri_la.data.repository.movies.utils.toDate
 import io.reactivex.observers.TestObserver
 import junit.framework.Assert
 import org.junit.Before
 import org.junit.Test
 
 /**
- * Created by Udit on 11/11/17.
- */
+* Created by Udit on 11/11/17.
+*/
 
 class MoviesRestApiTest {
 
@@ -24,7 +24,7 @@ class MoviesRestApiTest {
     @Test
     fun Should_ReturnListOfMoviesReleaseBetweenDatesFromCloud_When_ValidDatesArePassed() {
         val testSub = TestObserver<GetMovieResponseModel>()
-        var moviesObservable = movieRestApi.getMoviesReleasedBetween("2017-10-10", "2017-10-12")
+        val moviesObservable = movieRestApi.getMoviesReleasedBetween("2017-10-10", "2017-10-12")
 
         moviesObservable.subscribe(testSub)
 
@@ -43,5 +43,16 @@ class MoviesRestApiTest {
                     }
                 }
         testSub.assertComplete()
+    }
+
+    @Test
+    fun Should_ReturnListOfMoviesReleaseBetweenDatesFromCloud_When_InvalidDatesArePassed() {
+        val testSub = TestObserver<GetMovieResponseModel>()
+        val moviesObservable = movieRestApi.getMoviesReleasedBetween("foo", "bar")
+
+        moviesObservable.subscribe(testSub)
+
+        testSub.awaitTerminalEvent()
+        testSub.assertNotComplete()
     }
 }

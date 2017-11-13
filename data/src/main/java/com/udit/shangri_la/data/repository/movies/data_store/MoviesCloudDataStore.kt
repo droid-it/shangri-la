@@ -1,10 +1,10 @@
 package com.udit.shangri_la.data.repository.movies.data_store
 
 import com.udit.shangri_la.core.models.Movie
+import com.udit.shangri_la.core.utils.format
 import com.udit.shangri_la.data.repository.movies.net.MoviesRestApi
 import com.udit.shangri_la.data.repository.movies.utils.API_DATE_FORMAT
 import com.udit.shangri_la.data.repository.movies.utils.MoviesResponseMapper
-import com.udit.shangri_la.data.repository.movies.utils.format
 import io.reactivex.Single
 import java.util.*
 import javax.inject.Inject
