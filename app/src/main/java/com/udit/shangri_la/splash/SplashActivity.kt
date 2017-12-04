@@ -1,16 +1,15 @@
 package com.udit.shangri_la.splash
 
+import android.content.Intent
 import android.os.Bundle
-import android.os.CountDownTimer
-import android.util.Log
 import com.udit.shangri_la.R
 import com.udit.shangri_la.base.BaseActivity
+import com.udit.shangri_la.home.HomeActivity
 import javax.inject.Inject
 
 /**
- * Created by Udit on 30/09/17.
- */
-
+* Created by Udit on 30/09/17.
+*/
 class SplashActivity : BaseActivity(), SplashViewContract {
 
     @Inject
@@ -23,27 +22,9 @@ class SplashActivity : BaseActivity(), SplashViewContract {
         presenter.bind(this)
     }
 
-    override fun onSplashTimerFinished() {
-        Log.d("xsx", "sjxjsbnx")
-    }
-
-
-    //where to place this method? activity or presenter
-    override fun startSplashTimer(time: Long) {
-        val timer = object : CountDownTimer(time, time) {
-            override fun onTick(p0: Long) {
-            }
-
-            override fun onFinish() {
-                presenter.onTimerFinished()
-            }
-
-        }
-        timer.start()
-
-    }
-
     override fun openHomeScreen() {
+        val homeIntent = Intent(this, HomeActivity::class.java)
+        startActivity(homeIntent)
 
     }
 

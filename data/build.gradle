@@ -16,8 +16,6 @@ dependencies {
     //dagger
     kapt dataDependencies.daggerCompiler
     implementation dataDependencies.dagger
-//    implementation dataDependencies.daggerProcessor
-//    implementation dataDependencies.daggerSupport
 
     //retrofit2
     implementation dataDependencies.retrofit2

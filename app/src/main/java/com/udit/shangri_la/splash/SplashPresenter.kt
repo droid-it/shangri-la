@@ -1,5 +1,6 @@
 package com.udit.shangri_la.splash
 
+import android.os.CountDownTimer
 import com.udit.shangri_la.base.BasePresenter
 import javax.inject.Inject
 
@@ -8,11 +9,25 @@ import javax.inject.Inject
 */
 class SplashPresenter @Inject constructor() : BasePresenter<SplashViewContract>() {
 
-    private val SPLASH_TIMER = 5000L
+    private val SPLASH_TIMER = 3000L
 
     override fun bind(view: SplashViewContract) {
         super.bind(view)
-        view.startSplashTimer(SPLASH_TIMER)
+        startSplashTimer()
+    }
+
+    fun startSplashTimer() {
+        val timer = object : CountDownTimer(SPLASH_TIMER, SPLASH_TIMER) {
+            override fun onTick(p0: Long) {
+            }
+
+            override fun onFinish() {
+               onTimerFinished()
+            }
+
+        }
+        timer.start()
+
     }
 
     fun onTimerFinished() {

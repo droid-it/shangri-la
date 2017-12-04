@@ -22,6 +22,7 @@ ext {
     retrofitVersion = '2.3.0'
     okhttp3Version = '3.9.0'
     supportLibraryVersion = '27.0.0'
+    constraintLayoutVersion = '1.0.2'
     calligraphyVersion = '2.1.0'
     icepickVersion = '3.2.0'
     glideVersion = '3.7.0'
@@ -46,9 +47,9 @@ ext {
                                 supportGridLayout  : "com.android.support:gridlayout-v7:${supportLibraryVersion}",
                                 supportDesign      : "com.android.support:design:${supportLibraryVersion}",
                                 supportAppCompat   : "com.android.support:appcompat-v7:${supportLibraryVersion}",
+                                constraintLayout   : "com.android.support.constraint:constraint-layout:${constraintLayoutVersion}",
                                 rxJava             : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
                                 rxAndroid          : "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
-                                rxKotlin           : "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}",
                                 javaxAnnotation    : "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
                                 glide              : "com.github.bumptech.glide:glide:${glideVersion}"]
 

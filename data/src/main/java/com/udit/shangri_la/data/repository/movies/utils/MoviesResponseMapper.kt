@@ -4,12 +4,15 @@ import com.udit.shangri_la.core.models.Movie
 import com.udit.shangri_la.core.utils.toDate
 import com.udit.shangri_la.data.repository.movies.models.GetMovieResponseModel
 import java.util.*
+import javax.inject.Inject
+import javax.inject.Singleton
 import kotlin.collections.ArrayList
 
 /**
 * Created by Udit on 08/11/17.
 */
-class MoviesResponseMapper {
+@Singleton
+class MoviesResponseMapper @Inject constructor() {
 
     fun transformMoviesResponse(response: GetMovieResponseModel): List<Movie> {
         val movies: ArrayList<Movie> = ArrayList()

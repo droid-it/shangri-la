@@ -13,7 +13,6 @@ import javax.inject.Inject
 /**
 * Created by Udit on 31/10/17.
 */
-
 class MoviesDataRepository @Inject constructor(private val moviesRestApi: MoviesRestApi, private val mapper: MoviesResponseMapper) : MoviesRepository {
 
 

@@ -25,8 +25,7 @@ class FetchMoviesUseCaseTest {
     private lateinit var mockPostExecutionThread: PostExecutionThread
     private lateinit var mockMoviesRepository: MoviesRepository
 
-    private val moviesInPast: MutableList<Movie> = arrayListOf()
-    private val moviesInFuture: MutableList<Movie> = arrayListOf()
+    private val sampleMovies: MutableList<Movie> = arrayListOf()
 
     @Before
     fun setUp() {
@@ -40,19 +39,13 @@ class FetchMoviesUseCaseTest {
         calFuture.set(Calendar.MONTH, 12)
         calFuture.set(Calendar.DAY_OF_MONTH, 10)
         val futureMovie = Movie(1, "future", "overview", calFuture, 120, "wow")
-        moviesInFuture.add(futureMovie)
+        sampleMovies.add(futureMovie)
 
-        val calPast = Calendar.getInstance()
-        calPast.set(Calendar.YEAR, 2017)
-        calPast.set(Calendar.MONTH, 10)
-        calPast.set(Calendar.DAY_OF_MONTH, 10)
-        val pastMovie = Movie(2, "past", "overview", calPast, 120, "wow")
-        moviesInPast.add(pastMovie)
     }
 
     @Test
     fun Should_ReturnMoviesToBeReleasedInNextXDays_When_PositiveNumberOfDaysProvided() {
-        whenever(mockMoviesRepository.getMoviesReleasedBetween(any(), any())).thenReturn(Single.just(moviesInFuture))
+        whenever(mockMoviesRepository.getMoviesReleasedBetween(any(), any())).thenReturn(Single.just(sampleMovies))
         val startDate = Calendar.getInstance()
         val endDate = Calendar.getInstance()
         endDate.add(Calendar.DAY_OF_YEAR, DAYS_TO_FETCH_DATA_FOR)
@@ -65,7 +58,7 @@ class FetchMoviesUseCaseTest {
 
     @Test
     fun Should_ReturnMoviesToReleasedInLastXDays_When_NegativeNumberOfDaysProvided() {
-        whenever(mockMoviesRepository.getMoviesReleasedBetween(any(), any())).thenReturn(Single.just(moviesInFuture))
+        whenever(mockMoviesRepository.getMoviesReleasedBetween(any(), any())).thenReturn(Single.just(sampleMovies))
         val startDate = Calendar.getInstance()
         val endDate = Calendar.getInstance()
         startDate.add(Calendar.DAY_OF_YEAR, -DAYS_TO_FETCH_DATA_FOR)
@@ -78,7 +71,7 @@ class FetchMoviesUseCaseTest {
 
     @Test
     fun Should_ReturnMoviesToBeReleasedToday_When_ZeroNumberOfDaysProvided() {
-        whenever(mockMoviesRepository.getMoviesReleasedBetween(any(), any())).thenReturn(Single.just(moviesInFuture))
+        whenever(mockMoviesRepository.getMoviesReleasedBetween(any(), any())).thenReturn(Single.just(sampleMovies))
         val startDate = Calendar.getInstance()
         val endDate = Calendar.getInstance()
 
@@ -87,40 +80,5 @@ class FetchMoviesUseCaseTest {
         verify(mockMoviesRepository).getMoviesReleasedBetween(startDate, endDate)
 
     }
-//
-//    @Test
-//    fun fetchMoviesInPastTest() {
-//        whenever(mockMoviesRepository.fetchMoviesReleasedInLastXDays(any())).thenReturn(Single.just(moviesInPast))
-//
-//        val testSub = TestObserver<List<Movie>>()
-//        val single = fetchMoviesUseCase.buildUseCaseObservable(-1 * DAYS_TO_FETCH_DATA_FOR)
-//        single.subscribe(testSub)
-//
-//        testSub.awaitTerminalEvent()
-//        testSub.assertNoErrors()
-//        testSub.assertValueCount(1)
-//        testSub.assertValue(moviesInPast)
-//        testSub.assertComplete()
-//    }
-//
-//    @Test
-//    fun fetchMoviesForTodayTest() {
-//        whenever(mockMoviesRepository.fetchMoviesToBeReleasedInNextXDays(any())).thenReturn(Single.just(moviesInFuture))
-//
-//        val testSub = TestObserver<List<Movie>>()
-//        val single = fetchMoviesUseCase.buildUseCaseObservable(0)
-//        single.subscribe(testSub)
-//
-//        testSub.awaitTerminalEvent()
-//        testSub.assertNoErrors()
-//        testSub.assertValueCount(1)
-//        testSub.assertValue(moviesInFuture)
-//        testSub.assertComplete()
-//    }
-//
-//
-//    @After
-//    fun tearDown() {
-//    }
 
 }
