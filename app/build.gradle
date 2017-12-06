@@ -48,7 +48,6 @@ dependencies {
     implementation project(':domain')
     implementation project(':data')
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     //ui
     implementation presentationDependencies.supportAppCompat
@@ -63,16 +62,16 @@ dependencies {
     implementation presentationDependencies.rxJava
     implementation presentationDependencies.rxAndroid
 
-    implementation presentationDependencies.javaxAnnotation
+//    implementation presentationDependencies.javaxAnnotation
 
     //butterknife
-    kapt presentationDependencies.butterKnifeCompiler
-    implementation presentationDependencies.butterKnife
+//    kapt presentationDependencies.butterKnifeCompiler
+//    implementation presentationDependencies.butterKnife
 
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
+//    testImplementation 'junit:junit:4.12'
+//    androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1', {
+//        exclude group: 'com.android.support', module: 'support-annotations'
+//    })
 }
 repositories {
     mavenCentral()

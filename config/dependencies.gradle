@@ -64,8 +64,6 @@ ext {
 
     domainDependencies = [daggerCompiler : "com.google.dagger:dagger-compiler:${daggerVersion}",
                           dagger         : "com.google.dagger:dagger:${daggerVersion}",
-                          daggerSupport  : "com.google.dagger:dagger-android-support:${daggerVersion}",
-                          daggerProcessor: "com.google.dagger:dagger-android-processor:${daggerVersion}",
                           javaxAnnotation: "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
                           rxJava         : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
                           rxKotlin       : "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}",

@@ -11,10 +11,8 @@ dependencies {
     implementation domainDependencies.gson
 
     //dagger
-    kapt domainDependencies.daggerCompiler
-    implementation domainDependencies.dagger
-    implementation domainDependencies.daggerProcessor
-    implementation domainDependencies.daggerSupport
+    kapt dataDependencies.daggerCompiler
+    implementation dataDependencies.dagger
 
     //rx
     implementation domainDependencies.rxJava
