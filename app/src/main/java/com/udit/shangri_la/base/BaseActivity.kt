@@ -10,7 +10,7 @@ import com.udit.shangri_la.utilities.getAppComponent
  */
 abstract class BaseActivity : AppCompatActivity() {
 
-    protected var activityComponent: ActivityComponent? = null
+    protected lateinit var activityComponent: ActivityComponent
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -7,8 +7,7 @@ data class MovieApiModel(val id:Int,
                          val original_title: String,
                          val release_date: String,
                          val runtime: Int,
-                         val overview: String,
-                         val tagline: String)
+                         val overview: String)
 
 data class GetMovieResponseModel(val page: Int,
                                  val total_results: Int,

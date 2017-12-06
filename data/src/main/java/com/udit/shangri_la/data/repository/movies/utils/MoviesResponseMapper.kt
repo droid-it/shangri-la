@@ -19,7 +19,7 @@ class MoviesResponseMapper @Inject constructor() {
         for (movieFromApi in response.results) {
             val cal: Calendar = Calendar.getInstance()
             cal.time = movieFromApi.release_date.toDate(API_DATE_FORMAT)
-            val movie = Movie(movieFromApi.id, movieFromApi.original_title, movieFromApi.overview, cal, movieFromApi.runtime, movieFromApi.tagline)
+            val movie = Movie(movieFromApi.id, movieFromApi.original_title, movieFromApi.overview, cal, movieFromApi.runtime)
             movies.add(movie)
         }
         return movies

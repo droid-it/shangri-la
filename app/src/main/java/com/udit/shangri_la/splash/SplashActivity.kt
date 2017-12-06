@@ -25,7 +25,6 @@ class SplashActivity : BaseActivity(), SplashViewContract {
     override fun openHomeScreen() {
         val homeIntent = Intent(this, HomeActivity::class.java)
         startActivity(homeIntent)
-
     }
 
     override fun onDestroy() {
@@ -34,5 +33,13 @@ class SplashActivity : BaseActivity(), SplashViewContract {
     }
 
     override fun getLayoutRes(): Int = R.layout.splash_activity_layout
+
+    override fun showLoader() {
+
+    }
+
+    override fun hideLoader() {
+
+    }
 
 }

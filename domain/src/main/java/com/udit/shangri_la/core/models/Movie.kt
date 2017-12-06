@@ -9,5 +9,4 @@ data class Movie(val id: Int,
                  val title: String,
                  val description: String,
                  val releaseDate: Calendar,
-                 val runtime: Int,
-                 val tagLine: String)
+                 val runtime: Int)

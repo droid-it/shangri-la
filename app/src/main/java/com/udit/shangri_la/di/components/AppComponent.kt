@@ -1,7 +1,7 @@
 package com.udit.shangri_la.di.components
 
-import android.app.Application
 import com.udit.shangri_la.di.modules.AndroidModule
+import com.udit.shangri_la.di.modules.RepositoryModule
 import dagger.Component
 import javax.inject.Singleton
 
@@ -9,7 +9,8 @@ import javax.inject.Singleton
  * Created by Udit on 01/10/17.
  */
 @Singleton
-@Component(modules = arrayOf(AndroidModule::class))
+@Component(modules = arrayOf(AndroidModule::class,
+        RepositoryModule::class))
 interface AppComponent {
     fun activityComponent(): ActivityComponent
 }
