@@ -11,8 +11,8 @@ dependencies {
     implementation domainDependencies.gson
 
     //dagger
-    kapt dataDependencies.daggerCompiler
-    implementation dataDependencies.dagger
+    kapt domainDependencies.daggerCompiler
+    implementation domainDependencies.dagger
 
     //rx
     implementation domainDependencies.rxJava
@@ -23,7 +23,7 @@ dependencies {
     //testing
     testImplementation domainTestDependencies.junit
     testImplementation domainTestDependencies.mockitoKotlin
-    testImplementation domainTestDependencies.truth
+//    testImplementation domainTestDependencies.truth
 }
 
 sourceCompatibility = "1.8"

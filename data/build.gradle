@@ -32,9 +32,10 @@ dependencies {
     //testing
     testImplementation dataTestDependencies.junit
     testImplementation dataTestDependencies.mockitoKotlin
-    testImplementation "org.mockito:mockito-inline:2.12.0"
-    testImplementation dataTestDependencies.truth
-    testImplementation dataTestDependencies.robolectric
+    testImplementation dataTestDependencies.mockitoInline
+
+//    testImplementation dataTestDependencies.truth
+//    testImplementation dataTestDependencies.robolectric
 
 }
 

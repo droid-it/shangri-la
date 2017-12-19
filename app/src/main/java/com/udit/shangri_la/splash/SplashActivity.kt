@@ -1,10 +1,9 @@
 package com.udit.shangri_la.splash
 
-import android.content.Intent
 import android.os.Bundle
 import com.udit.shangri_la.R
 import com.udit.shangri_la.base.BaseActivity
-import com.udit.shangri_la.home.HomeActivity
+import com.udit.shangri_la.navigation.Router
 import javax.inject.Inject
 
 /**
@@ -12,8 +11,9 @@ import javax.inject.Inject
 */
 class SplashActivity : BaseActivity(), SplashViewContract {
 
-    @Inject
-    lateinit var presenter: SplashPresenter
+    @Inject lateinit var presenter: SplashPresenter
+    @Inject lateinit var router: Router
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,8 +23,8 @@ class SplashActivity : BaseActivity(), SplashViewContract {
     }
 
     override fun openHomeScreen() {
-        val homeIntent = Intent(this, HomeActivity::class.java)
-        startActivity(homeIntent)
+        router.openHomeScreen(this)
+        finish()
     }
 
     override fun onDestroy() {

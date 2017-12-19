@@ -38,7 +38,7 @@ class FetchMoviesUseCaseTest {
         calFuture.set(Calendar.YEAR, 2017)
         calFuture.set(Calendar.MONTH, 12)
         calFuture.set(Calendar.DAY_OF_MONTH, 10)
-        val futureMovie = Movie(1, "future", "overview", calFuture, 120, "wow")
+        val futureMovie = Movie(1, "future", "overview", calFuture, 120)
         sampleMovies.add(futureMovie)
 
     }

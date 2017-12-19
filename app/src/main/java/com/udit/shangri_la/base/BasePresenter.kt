@@ -7,7 +7,7 @@ import io.reactivex.disposables.CompositeDisposable
  */
 abstract class BasePresenter<T : BaseViewContract> {
 
-    protected var view: T? = null
+    var view: T? = null
     protected val compositeDisposable = CompositeDisposable()
 
     fun destroy() {

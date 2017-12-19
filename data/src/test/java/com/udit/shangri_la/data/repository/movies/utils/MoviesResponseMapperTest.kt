@@ -19,7 +19,7 @@ class MoviesResponseMapperTest {
     @Before
     fun setup() {
         response = GetMovieResponseModel(1, 1, 1, listOf(
-                MovieApiModel(1, "title", "2017-10-10", 12, "", "")
+                MovieApiModel(1, "title", "2017-10-10", 12, "")
         ))
     }
 
@@ -30,7 +30,7 @@ class MoviesResponseMapperTest {
         val releaseDate = Calendar.getInstance()
         releaseDate.timeInMillis = 1507573800000L // same as 2017-10-10
 
-        val expectedMappedMovie = Movie(1, "title", "", releaseDate, 12,  "")
+        val expectedMappedMovie = Movie(1, "title", "", releaseDate, 12)
         val expectedMappedMovieList = listOf<Movie>(expectedMappedMovie)
 
         Assert.assertEquals(mapper.transformMoviesResponse(response), expectedMappedMovieList)

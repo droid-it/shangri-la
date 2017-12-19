@@ -34,6 +34,7 @@ ext {
     jUnitVersion = '4.4'
     truthVersion = '0.36'
     mockitoKotlinVersion = '1.5.0'
+    mockitoInlineVersion = '2.12.0'
     dexmakerVersion = '1.2'
     espressoVersion = '2.2.1'
     testingRunnerVersion = '0.4.1'
@@ -53,7 +54,9 @@ ext {
                                 javaxAnnotation    : "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
                                 glide              : "com.github.bumptech.glide:glide:${glideVersion}"]
 
-    presentationTestDependencies = [mockitoKotlin     : "com.nhaarman:mockito-kotlin:${mockitoKotlinVersion}",
+    presentationTestDependencies = [junit             : "junit:junit:${jUnitVersion}",
+                                    mockitoKotlin     : "com.nhaarman:mockito-kotlin:${mockitoKotlinVersion}",
+                                    mockitoInline     : "org.mockito:mockito-inline:${mockitoInlineVersion}",
                                     dexmaker          : "com.google.dexmaker:dexmaker:${dexmakerVersion}",
                                     dexmakerMockito   : "com.google.dexmaker:dexmaker-mockito:${dexmakerVersion}",
                                     espresso          : "com.android.support.test.espresso:espresso-core:${espressoVersion}",
@@ -93,6 +96,7 @@ ext {
     dataTestDependencies = [junit             : "junit:junit:${jUnitVersion}",
                             truth             : "com.google.truth:truth:${truthVersion}",
                             mockitoKotlin     : "com.nhaarman:mockito-kotlin:${mockitoKotlinVersion}",
+                            mockitoInline     : "org.mockito:mockito-inline:${mockitoInlineVersion}",
                             supportAnnotations: "com.android.support:support-annotations:${supportLibraryVersion}",
                             robolectric       : "org.robolectric:robolectric:${robolectricVersion}"]
 }

@@ -36,7 +36,7 @@ class MoviesDataRepositoryTest {
         moviesRestApi = mock()
         moviesDataRepository = MoviesDataRepository(moviesRestApi, mapper)
         response = GetMovieResponseModel(1, 1, 1, listOf(
-                MovieApiModel(1, "title", "2017-10-10", 12, "", "")
+                MovieApiModel(1, "title", "2017-10-10", 12, "")
         ))
 
         startDate.set(Calendar.YEAR, 2017)
@@ -68,7 +68,6 @@ class MoviesDataRepositoryTest {
             Assert.assertEquals(response.results[i].release_date, testSub.values()[0][i].releaseDate.time.format(API_DATE_FORMAT))
             Assert.assertEquals(response.results[i].runtime, testSub.values()[0][i].runtime)
             Assert.assertEquals(response.results[i].overview, testSub.values()[0][i].description)
-            Assert.assertEquals(response.results[i].tagline, testSub.values()[0][i].tagLine)
         }
         testSub.assertComplete()
     }

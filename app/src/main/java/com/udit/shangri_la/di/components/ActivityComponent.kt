@@ -12,6 +12,6 @@ import dagger.Subcomponent
 @Subcomponent
 interface ActivityComponent {
 
-    fun inject(splashActivity: SplashActivity)
-    fun inject(splashActivity: HomeActivity)
+    fun inject(activity: SplashActivity)
+    fun inject(activity: HomeActivity)
 }
