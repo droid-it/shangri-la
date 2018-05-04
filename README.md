@@ -1,6 +1,6 @@
 # shangri-la
 
-TLDR; A sample android application based on MVP-Clean Architecture, written purely in Kotlin complemented with JUnit test cases
+TLDR; A sample Android application based on MVP-Clean Architecture, written purely in Kotlin and complemented with JUnit test cases
 
 The word Shangri-La means:
 
