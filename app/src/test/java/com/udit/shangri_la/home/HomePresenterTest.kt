@@ -54,8 +54,25 @@ class HomePresenterTest {
         verify(homeView).showLoader()
         verify(fetchMoviesUseCase).execute(any(), captor.capture())
         captor.firstValue.onSuccess(sampleMovies)
+
         verify(homeView).hideLoader()
         verify(homeView).displayMovies(sampleMovies)
+        verifyNoMoreInteractions(homeView)
+
+    }
+
+    @Test
+    fun Should_ShowRetryView_When_MoviesFailedToLoad() {
+
+        homePresenter.bind(homeView)
+        homePresenter.fetchMovies()
+
+        verify(homeView).showLoader()
+        verify(fetchMoviesUseCase).execute(any(), captor.capture())
+        captor.firstValue.onError(IllegalArgumentException())
+
+        verify(homeView).hideLoader()
+        verify(homeView).showRetryView()
         verifyNoMoreInteractions(homeView)
 
     }

@@ -31,7 +31,8 @@ class HomePresenter @Inject constructor(private val fetchMoviesUseCase: FetchMov
         }
 
         override fun onError(e: Throwable) {
-            e.printStackTrace()
+            view?.hideLoader()
+            view?.showRetryView()
         }
 
     }

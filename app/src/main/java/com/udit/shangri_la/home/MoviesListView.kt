@@ -7,5 +7,7 @@ import com.udit.shangri_la.base.BaseViewContract
  */
 interface MoviesListView: BaseViewContract {
     fun setTitle(title: String?)
+    fun setDescription(description: String?)
+    fun setRunTime(runTime: String?)
 
 }

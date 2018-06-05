@@ -31,8 +31,6 @@ class MoviesRecyclerAdapter @Inject constructor(private val moviesListPresenter:
 
     class MoviesViewHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView), MoviesListView {
 
-        private val titleTextView = itemView.movie_title_text_view
-
         override fun showLoader() {
 
         }
@@ -42,7 +40,15 @@ class MoviesRecyclerAdapter @Inject constructor(private val moviesListPresenter:
         }
 
         override fun setTitle(title: String?) {
-            titleTextView.text = title
+            itemView.movieTitleTextView.text = title
+        }
+
+        override fun setDescription(description: String?) {
+            itemView.movieDescriptionTextView.text = description
+        }
+
+        override fun setRunTime(runTime: String?) {
+            itemView.movieRuntimeTextView.text = runTime
         }
 
     }

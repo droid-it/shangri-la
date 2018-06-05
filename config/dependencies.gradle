@@ -36,8 +36,8 @@ ext {
     mockitoKotlinVersion = '1.5.0'
     mockitoInlineVersion = '2.12.0'
     dexmakerVersion = '1.2'
-    espressoVersion = '2.2.1'
-    testingRunnerVersion = '0.4.1'
+    espressoVersion = '3.0.1'
+    testingRunnerVersion = '1.0.1'
 
     presentationDependencies = [daggerCompiler     : "com.google.dagger:dagger-compiler:${daggerVersion}",
                                 dagger             : "com.google.dagger:dagger:${daggerVersion}",
@@ -52,18 +52,18 @@ ext {
                                 rxJava             : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
                                 rxAndroid          : "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
                                 javaxAnnotation    : "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
-                                glide              : "com.github.bumptech.glide:glide:${glideVersion}"]
+                                glide              : "com.github.bumptech.glide:glide:${glideVersion}",
+                                supportAnnotations : "com.android.support:support-annotations:${supportLibraryVersion}"]
 
-    presentationTestDependencies = [junit             : "junit:junit:${jUnitVersion}",
-                                    mockitoKotlin     : "com.nhaarman:mockito-kotlin:${mockitoKotlinVersion}",
-                                    mockitoInline     : "org.mockito:mockito-inline:${mockitoInlineVersion}",
-                                    dexmaker          : "com.google.dexmaker:dexmaker:${dexmakerVersion}",
-                                    dexmakerMockito   : "com.google.dexmaker:dexmaker-mockito:${dexmakerVersion}",
-                                    espresso          : "com.android.support.test.espresso:espresso-core:${espressoVersion}",
-                                    espressoIntents   : "com.android.support.test.espresso:espresso-intents:${espressoVersion}",
-                                    testingRunner     : "com.android.support.test:runner:${testingRunnerVersion}",
-                                    testingRules      : "com.android.support.test:rules:${testingRunnerVersion}",
-                                    supportAnnotations: "com.android.support:support-annotations:${supportLibraryVersion}"]
+    presentationTestDependencies = [junit          : "junit:junit:${jUnitVersion}",
+                                    mockitoKotlin  : "com.nhaarman:mockito-kotlin:${mockitoKotlinVersion}",
+                                    mockitoInline  : "org.mockito:mockito-inline:${mockitoInlineVersion}",
+                                    dexmaker       : "com.google.dexmaker:dexmaker:${dexmakerVersion}",
+                                    dexmakerMockito: "com.google.dexmaker:dexmaker-mockito:${dexmakerVersion}",
+                                    espresso       : "com.android.support.test.espresso:espresso-core:${espressoVersion}",
+                                    espressoIntents: "com.android.support.test.espresso:espresso-intents:${espressoVersion}",
+                                    testingRunner  : "com.android.support.test:runner:${testingRunnerVersion}",
+                                    testingRules   : "com.android.support.test:rules:${testingRunnerVersion}"]
 
     domainDependencies = [daggerCompiler : "com.google.dagger:dagger-compiler:${daggerVersion}",
                           dagger         : "com.google.dagger:dagger:${daggerVersion}",

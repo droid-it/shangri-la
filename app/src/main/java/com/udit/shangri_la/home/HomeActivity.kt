@@ -2,7 +2,7 @@ package com.udit.shangri_la.home
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import android.view.View
 import com.udit.shangri_la.R
 import com.udit.shangri_la.base.BaseActivity
 import com.udit.shangri_la.core.models.Movie
@@ -17,14 +17,11 @@ class HomeActivity : BaseActivity(), HomeViewContract {
     @Inject lateinit var homePresenter: HomePresenter
     @Inject lateinit var moviesListAdapter: MoviesRecyclerAdapter
 
-    private lateinit var moviesRecyclerView: RecyclerView
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activityComponent.inject(this)
         homePresenter.bind(this)
 
-        moviesRecyclerView = home_movies_recycler_view
         moviesRecyclerView.layoutManager = LinearLayoutManager(this)
         moviesRecyclerView.setHasFixedSize(true)
         moviesRecyclerView.adapter = moviesListAdapter
@@ -42,11 +39,15 @@ class HomeActivity : BaseActivity(), HomeViewContract {
     }
 
     override fun showLoader() {
-
+        progressBar.visibility = View.VISIBLE
     }
 
     override fun hideLoader() {
+        progressBar.visibility = View.GONE
+    }
 
+    override fun showRetryView() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun onDestroy() {

@@ -8,4 +8,5 @@ import com.udit.shangri_la.core.models.Movie
 */
 interface HomeViewContract : BaseViewContract {
     fun displayMovies(movies: List<Movie>)
+    fun showRetryView()
 }

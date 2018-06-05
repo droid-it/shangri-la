@@ -14,6 +14,8 @@ class MoviesListPresenter @Inject constructor() : BasePresenter<MoviesListView>(
     fun onBindRepositoryRowViewAtPosition(position: Int, view: MoviesListView?) {
         view?.apply {
             setTitle(movies?.get(position)?.title)
+            setDescription(movies?.get(position)?.description)
+            setRunTime("(${movies?.get(position)?.runtime} mins)")
         }
     }
 

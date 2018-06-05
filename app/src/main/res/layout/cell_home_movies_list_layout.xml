@@ -1,11 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:padding="@dimen/movie_list_padding">
 
     <TextView
-        android:id="@+id/movie_title_text_view"
+        android:id="@+id/movieTitleTextView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textColor="@color/primary_text_color"
+        android:textSize="@dimen/title_text_size"
+        tools:text="Clash of Titans" />
+
+    <TextView
+        android:id="@+id/movieRuntimeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textColor="@color/secondary_text_color"
+        android:textSize="@dimen/subtitle_text_size"
+        app:layout_constraintBottom_toBottomOf="@+id/movieTitleTextView"
+        app:layout_constraintStart_toEndOf="@+id/movieTitleTextView"
+        tools:text="(168 mins)" />
+
+    <TextView
+        android:id="@+id/movieDescriptionTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/primary_text_color"
+        android:textSize="@dimen/subtitle_text_size"
+        app:layout_constraintStart_toStartOf="@+id/movieTitleTextView"
+        app:layout_constraintTop_toBottomOf="@+id/movieTitleTextView"
+        tools:text="Lorem Ipsum of description here" />
 
 </android.support.constraint.ConstraintLayout>
